@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# Brita 0.1 - backlight adjuster for Linux
+# Copyright (C) 2014 Przemysław Buczkowski <przemub@przemub.pl>
+# This file is distributed under the MIT license.
 
 import gettext
 import locale

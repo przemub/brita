@@ -1,4 +1,7 @@
 #!/bin/sh
+# Brita 0.1 - backlight adjuster for Linux
+# Copyright (C) 2014 Przemysław Buczkowski <przemub@przemub.pl>
+# This file is distributed under the MIT license.
 
 chmod +x brita.py
 python3 setup.py build_i18n
