@@ -1,0 +1,38 @@
+================================================================================
+    brita
+================================================================================
+
+a backlight adjuster for Linux
+
+Brita is small console program that can be used for dimming and brightening
+a screen of your laptop.
+
+I've written this program because my Chromebook doesn't like "xbacklight" method,
+so brita modifies files present in sysfs. It *likely* works on other laptops and
+it shouldn't be able to do any damage, but it is FLOSS - absolutely zero warranty,
+but I'll be very glad if YOU make it better ;-)
+
+================================================================================
+    Build
+================================================================================
+
+    ./make
+    ./brita.py --help
+  OR
+    python3 setup.py install
+    brita --help
+
+================================================================================
+    Usage
+================================================================================
+
+  Setting the brightness to certain value:
+    brita 800
+  Setting the brightness to certain percentage of the maximum:
+    brita 60%
+  Brightening the screen:
+    brita +500
+    brita +30%
+  Dimming the screen:
+    brita -400
+    brita -30%
