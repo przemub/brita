@@ -1,0 +1,60 @@
+# Brita 0.1 - backlight adjuster for Linux
+# Copyright (C) 2014 PrzemysÅaw Buczkowski <przemub@przemub.pl>
+# This file is distributed under the MIT license.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Brita 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-08-03 15:55+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Przemysław Buczkowski <przemub@przemub.pl>\n"
+"Language-Team: \n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+
+#: ../brita.py:38
+#, python-format
+msgid "Current brightness: %s / %s (%s%%)"
+msgstr "Ustawiona jasność: %s / %s (%s%%)"
+
+#: ../brita.py:43
+msgid "This script works only in Linux environment."
+msgstr "Ten skrypt działa tylko w systemie Linux."
+
+#: ../brita.py:50
+#, python-format
+msgid "Found backlight device: %s"
+msgstr "Znaleziono urządzenie podświetlenia ekranu: %s"
+
+#: ../brita.py:54
+msgid "Brightness settings aren't available for the device.\n"
+msgstr "To urządzenie nie udostępnia ustawień jasności podświetlnia.\n"
+
+#: ../brita.py:113
+#, python-format
+msgid "Brita %s - backlight adjuster for Linux"
+msgstr "Brita %s - program zarządzający podświetleniem ekranu dla Linuksa"
+
+#: ../brita.py:114
+msgid ""
+"usage: brita [--help] value\n"
+"\n"
+"\tvalue can be absolute (ie. 400),\n"
+"\t\tin percents (ie. 50%)\n"
+"\t\tor relative to the current value (ie. -500, +30%, -10%)\n"
+"\t\n"
+"\tprogram executed without arguments shows the current brightness"
+msgstr ""
+"użycie: brita [--help] wartość\n"
+"\n"
+"\tvwartość może być absolutna (np. 400),\n"
+"\t\tpodana w procentach (np. 50%)\n"
+"\t\tlub w relacji do obecnej wartości (np.500, +30%, -10%)\n"
+"\t\n"
+"\tprogram wywołany bez wartości pokazuje obecnie ustawioną jasność"

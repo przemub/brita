@@ -1,0 +1,4 @@
+build/
+po/brita.pot
+po/*.mo
+
