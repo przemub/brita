@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-# Brita 0.1 - backlight adjuster for Linux
-# Copyright (C) 2014 Przemysław Buczkowski <przemub@przemub.pl>
+# Brita 0.2 - backlight adjuster for Linux
+# Copyright (C) 2016 Przemysław Buczkowski <przemub@przemub.pl>
 # This file is distributed under the MIT license.
 
 import gettext
 import locale
 import os
 from sys import argv, exit, platform, stderr
+import sys
 
 def initlocalization():
 	gettext.textdomain("brita")
@@ -38,23 +39,26 @@ def readbrightness(printit = True):
 		return
 
 	percent = int(brightness / max_brightness * 100)
-	print(_("Current brightness: %s / %s (%s%%)")
-		% (brightness, max_brightness, percent))
+	print(_("%s%%")
+		% (percent))
 
-def main():
+def main(printit = True, lower_bound = False):
 	if platform != 'linux':
-		stderr.write(_("This script works only in Linux environment.")
-			+ "\r\n")
+		if printit:
+			stderr.write(_("This script works only in Linux environment.")
+				+ "\r\n")
 		exit(1)
 
 	directory = "/sys/class/backlight/"
 	device = os.listdir(directory)[0]
 	directory += device + "/"
-	print(_("Found backlight device: %s") % (device))
+	if printit:
+		print(_("Found backlight device: %s") % (device))
 
 	properties = os.listdir(directory)
 	if not 'brightness' in properties or not 'max_brightness' in properties:
-		stderr.write(_("Brightness settings aren't available for the device.\n"))
+		if printit:
+			stderr.write(_("Brightness settings aren't available for the device.\n"))
 		exit(1)
 
 	global brightness, max_brightness
@@ -65,11 +69,10 @@ def main():
 	max_brightnessfile = open(directory + 'max_brightness', 'r')
 
 	if len(argv) == 1:
-		readbrightness()
+		readbrightness(printit)
 		exit(0)
 
-	wantedbrightness = argv[1]
-
+	wantedbrightness = argv[-1]
 
 	if wantedbrightness[0] == '+' or wantedbrightness[0] == '-':
 		readbrightness(False)
@@ -88,12 +91,17 @@ def main():
 
 		if brightness > max_brightness:
 			brightness = max_brightness
-
-		print(brightness)
+		if brightness < 0:
+				if lower_bound:
+						brightness = 100
+				else:
+						brightness = 0
+		if printit:
+			print(brightness)
 		brightnessfile.write(str(brightness))
 		brightnessfile.seek(0)
 
-		readbrightness()
+		readbrightness(printit)
 		exit(0)
 	elif wantedbrightness[-1] == '%':
 		readbrightness(False)
@@ -103,29 +111,47 @@ def main():
 
 		if brightness > max_brightness:
 				brightness = max_brightness
+		if brightness < 0:
+				if lower_bound:
+						brightness = 100
+				else:
+						brightness = 0
 
 		brightnessfile.write(str(brightness))
 		brightnessfile.seek(0)
 
-		readbrightness()
+		readbrightness(printit)
 
 if __name__ == "__main__":
 	initlocalization()
 
-	version = "0.1"
+	version = "0.2"
 	synopsis = _("Brita %s - backlight adjuster for Linux") % (version)
-	synopsis += "\n" + _('''usage: brita [--help] value
 
-	value can be absolute (ie. 400),
-		in percents (ie. 50%)
-		or relative to the current value (ie. -500, +30%, -10%)
+	synopsis += "\n" +_('''Usage: brita [options] value
+	Options:
+	  -q, --quiet		Disable printing output
+	  -v, --version		Print current version and exit
+	  -h, --help		Print this message and exit
+	  -m, --min			Set minimum brightness to 100
+	  
+	Value can be in percents (ie. 50%)
+		       or relative to the current value (ie. -500, +30%, -10%)
 
-	program executed without arguments shows the current brightness''')
-
-
-	if len(argv) > 1:
-		if argv[1] == "-h" or argv[1] == "--help":
+	Program executed without arguments shows the current brightness''')	
+	
+	State1 = True;
+	State2 = False;
+	
+	for arg in sys.argv:
+		if arg == "-h" or arg == "--help":
 			print(synopsis)
 			exit(0)
-
-	main()
+		if arg == "-v" or arg == "--version":
+			print(version)
+			exit(0)
+		if arg == "-q" or arg == "--quiet":
+			State1 = False
+		if arg == "-m" or arg == "--min":
+			State2 = True		
+	main(State1,State2)

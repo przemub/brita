@@ -9,7 +9,7 @@ rename("brita.py", "brita")
 
 setup(
 	name         = "brita",
-	version      = "0.1",
+	version      = "0.2",
 	description  = "backlight adjuster for Linux",
 	author       = "Przemysław Buczkowski",
 	author_email = "przemub@przemub.pl",
