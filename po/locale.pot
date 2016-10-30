@@ -1,46 +1,48 @@
-# Brita 0.1 - a backlight adjuster for Linux
-# Copyright (C) 2014 Przemysław Buczkowski <przemub@przemub.pl>
+# Brita 0.2 - a backlight adjuster for Linux
+# Copyright (C) 2016 Przemysław Buczkowski <przemub@przemub.pl>
 # This file is distributed under the MIT license.
 #
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Brita 0.1\n"
-"POT-Creation-Date: 2014-08-03 15:55+0200\n"
+"Project-Id-Version: Brita 0.2\n"
+"POT-Creation-Date: 2016-10-28 16:55+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../brita.py:38
-#: ../brita.py:38
+#: ../brita.py:42
 #, python-format
-msgid "Current brightness: %s / %s (%s%%)"
+msgid "%s%%"
 msgstr ""
 
-#: ../brita.py:43
+#: ../brita.py:48
 msgid "This script works only in Linux environment."
 msgstr ""
 
-#: ../brita.py:50
+#: ../brita.py:56
 #, python-format
 msgid "Found backlight device: %s"
 msgstr ""
 
-#: ../brita.py:54
+#: ../brita.py:61
 msgid "Brightness settings aren't available for the device.\n"
 msgstr ""
 
-#: ../brita.py:113
+#: ../brita.py:129
 #, python-format
 msgid "Brita %s - backlight adjuster for Linux"
 msgstr ""
 
-#: ../brita.py:114
+#: ../brita.py:131
 msgid ""
-"usage: brita [--help] value\n"
-"\n"
-"\tvalue can be absolute (ie. 400),\n"
-"\t\tin percents (ie. 50%)\n"
+"Usage: brita [options] value\n"
+"\tOptions:\n"
+"\t  -q, --quiet\tDisable printing output\n"
+"\t  -v, --version\tPrint current version and exit\n"
+"\t  -h, --help\tPrint this message and exit\n"
+"\t  -m, --min\tSet minimum brightness to 100\n\n"
+"\tValue can be percents (ie. 50%)\n"
 "\t\tor relative to the current value (ie. -500, +30%, -10%)\n"
 "\t\n"
 "\tprogram executed without arguments shows the current brightness"
